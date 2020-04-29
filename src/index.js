@@ -12,7 +12,7 @@ const application = (
 );
 
 ReactDOM.render(
-  application,
+    application,
   document.getElementById('root')
 );
 

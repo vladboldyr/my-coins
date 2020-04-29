@@ -1,21 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import Home from "./Home/Home";
 import Login from "./Authorization/Login/Login";
 import { Route,NavLink } from "react-router-dom";
 import Main from "./Main/Main";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {
   return (
-    <div className="App">
-        <Main/>
 
-      <Route path="/" exact component={Home}/>
-      <Route path="/Login" component={Login}/>
+        <div className={"App"}>
+            <Main/>
+            <Route path="/Login" component={Login}/>
 
+        </div>
 
-    </div>
   );
 }
 
