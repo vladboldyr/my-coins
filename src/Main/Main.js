@@ -6,7 +6,6 @@ import Planning from "../Menu/Planning";
 import Record from "../Menu/Record";
 import Categories from "../Menu/Categories";
 import main from "./Main.css";
-import styles from './main.module.css';
 import styled from 'styled-components';
 import {TabContainer, TabContent, TabPane, Row, Col, Nav, Navbar} from 'react-bootstrap';
 
@@ -16,6 +15,9 @@ const NavComponent = styled.nav`
     color: black;
 `;
 
+const link = {
+    color: "black"
+};
 
 class Main extends Component {
     constructor(props) {
@@ -25,8 +27,6 @@ class Main extends Component {
         };
     }
 
-
-
     selectedNav(selectedKey) {
         this.setState({activeKey:selectedKey});
     }
@@ -34,56 +34,66 @@ class Main extends Component {
 
     render() {
         return (
-            <div className={main.root}>
-                <Navbar></Navbar>
-                <TabContainer id="left-tabs-example"
-                              activeKey={this.state.activeKey}
-                              onSelect={(selectedKey) => {this.selectedNav(selectedKey)}}
-                >
-                    <Row style={{display:'flex'}}>
-                        <Col sm={3}>
-                            <Nav variant="pills" className={styles.myNavLink} activeKey={this.state.activeKey} >
-                                <Nav.Item>
-                                    <Nav.Link eventKey="Check" >Счет</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link eventKey="History" >История</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link eventKey="Planning" >Планирование</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link eventKey="Record" >Новая запись</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link eventKey="Categories" >Категории</Nav.Link>
-                                </Nav.Item>
-                            </Nav>
-                        </Col>
-                        <Col sm={9}>
-                            <TabContent>
-                                <TabPane eventKey="History">
-                                    <History />
-                                </TabPane>
-                                <TabPane eventKey="Check">
-                                    <Check />
-                                </TabPane >
-                                <TabPane eventKey="Planning">
-                                    <Planning />
-                                </TabPane>
-                                <TabPane eventKey="Record">
-                                    <Record />
-                                </TabPane>
-                                <TabPane eventKey="Categories">
-                                    <Categories />
-                                </TabPane>
-                            </TabContent>
-                        </Col>
-                    </Row>
-                </TabContainer>
+            <div>
+                <Navbar collapseOnSelect expand="lg"  style={{backgroundColor:"orange"}}>
+                    <Navbar.Collapse id="responsive-navbar-nav">
+                        <Nav className="mr-auto">
+                            <Nav.Link href="#features">Features</Nav.Link>
+                            <Nav.Link href="#pricing">Pricing</Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Navbar>
+                <div className={main.root}>
+
+                    <TabContainer id="left-tabs-example"
+                                  activeKey={this.state.activeKey}
+                                  onSelect={(selectedKey) => {this.selectedNav(selectedKey)}}
+                    >
+                        <Row style={{display:'flex'}}>
+                            <Col sm={3}>
+                                <NavComponent variant="pills" className="flex-column" activeKey={this.state.activeKey} >
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="Check" style={link}>Счет</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="History" style={link}>История</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="Planning" style={link}>Планирование</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="Record" style={link}>Новая запись</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="Categories" style={link}>Категории</Nav.Link>
+                                    </Nav.Item>
+                                </NavComponent>
+                            </Col>
+                            <Col sm={9}>
+                                <TabContent>
+                                    <TabPane eventKey="History">
+                                        <History />
+                                    </TabPane>
+                                    <TabPane eventKey="Check">
+                                        <Check />
+                                    </TabPane >
+                                    <TabPane eventKey="Planning">
+                                        <Planning />
+                                    </TabPane>
+                                    <TabPane eventKey="Record">
+                                        <Record />
+                                    </TabPane>
+                                    <TabPane eventKey="Categories">
+                                        <Categories />
+                                    </TabPane>
+                                </TabContent>
+                            </Col>
+                        </Row>
+                    </TabContainer>
 
 
 
+                </div>
             </div>
         );
     }
